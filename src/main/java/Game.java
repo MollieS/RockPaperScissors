@@ -1,4 +1,14 @@
+import java.util.HashMap;
+
 public class Game {
+
+  private HashMap<String, String> options = new HashMap();
+
+  public Game() {
+    options.put("1", "Rock");
+    options.put("2", "Paper");
+    options.put("3", "Scissors");
+  }
 
   public String greet() {
     return "Welcome to RockPaperScissors!";
@@ -9,15 +19,14 @@ public class Game {
   }
 
   public boolean validInput(String input) {
-    if (input != "1" && input != "2" && input != "3") return false;
-    return true;
+    return options.containsKey(input);
   }
 
   public String input(String word) {
     if (validInput(word)) {
-      return null;
+      return "You chose " + options.get(word);
     } else {
       return "Please choose 1, 2 or 3";
-    }
+  }
   }
 }

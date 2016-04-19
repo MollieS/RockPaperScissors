@@ -41,4 +41,11 @@ public class GameTest {
     String error = game.input("Rock");
     assertThat(error, containsString("Please choose 1, 2 or 3"));
   }
+
+  @Test
+  public void getsCorrectChoice() {
+    assertThat(game.input("1"), containsString("You chose Rock"));
+    assertThat(game.input("2"), containsString("You chose Paper"));
+    //    assertThat(game.input("3"), containsString("You chose Scissor"));
+  }
 }

@@ -3,6 +3,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
+import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
@@ -14,9 +15,23 @@ public class GameTest {
   }
 
   @Test
+  public void determinesWinningElement() {
+    assertThat(game.play("Rock", "Paper"), containsString("Paper"));
+    assertThat(game.play("Scissors", "Paper"), containsString("Scissors"));
+    assertThat(game.play("Scissors", "Rock"), containsString("Rock"));
+    assertThat(game.play("Rock", "Scissors"), containsString("Rock"));
+    assertThat(game.play("Paper", "Scissors"), containsString("Scissors"));
+    assertThat(game.play("Paper", "Rock"), containsString("Paper"));
+  }
+
+  @Test
+  public void returnsNothingForDraw() {
+    assertEquals(null, game.play("Rock", "Rock"));
+  }
+
+  @Test
   public void determinesWinner() {
-    assertThat(game.play("Rock", "Paper"), containsString("Paper wins!"));
-    assertThat(game.play("Scissors", "Paper"), containsString("Scissors wins!"));
-    assertThat(game.play("Scissors", "Rock"), containsString("Rock wins!"));
+    game.play("Rock", "Paper");
+    assertThat(game.winner, containsString("Player Two"));
   }
 }

@@ -1,9 +1,10 @@
 import java.util.HashMap;
+import java.util.Random;
 
 public class App {
   private HashMap<String, String> options = new HashMap();
 
-  public App() {
+  public App(Game game) {
     options.put("1", "Rock");
     options.put("2", "Paper");
     options.put("3", "Scissors");
@@ -27,5 +28,12 @@ public class App {
     } else {
       return "Please choose 1, 2 or 3";
     }
+  }
+
+  public String generateChoice() {
+    String[] choices = {"Rock", "Paper", "Scissors"};
+    Random random = new Random();
+    int index = random.nextInt(choices.length);
+    return choices[index];
   }
 }

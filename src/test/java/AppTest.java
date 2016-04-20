@@ -3,6 +3,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
 
@@ -12,7 +13,8 @@ public class AppTest {
 
   @Before
   public void setUp() {
-    app = new App();
+    Game game = new Game();
+    app = new App(game);
   }
 
   @Test
@@ -47,5 +49,14 @@ public class AppTest {
     assertThat(app.input("1"), containsString("You chose Rock"));
     assertThat(app.input("2"), containsString("You chose Paper"));
     assertThat(app.input("3"), containsString("You chose Scissor"));
+  }
+
+  @Test
+  public void generatesOtherPlayerChoice() {
+    assertNotEquals(null, app.generateChoice());
+  }
+
+  @Test
+  public void returnsWinningSymbol() {
   }
 }

@@ -58,5 +58,11 @@ public class AppTest {
 
   @Test
   public void returnsWinningSymbol() {
+    assertThat(app.turn("Rock", "Paper"), containsString("Paper wins!"));
+  }
+
+  @Test
+  public void returnsWinningPlayer() {
+    assertThat(app.turn("Rock", "Scissors"), containsString("Player One is the winner!"));
   }
 }

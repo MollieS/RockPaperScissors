@@ -1,16 +1,41 @@
-
 public class TestConsole implements Console {
 
   private App app;
-  public String output;
+  private String output;
+  private String[] input;
 
   public TestConsole(App app) {
     this.app = app;
-    this.output = "";
   }
 
   public void start() {
-     output.concat(app.greet());
+    output += app.greet();
+    output += app.promptForInput();
   }
-  
+
+  public String output() {
+    return output;
+  }
+
+  public void input(String... words) {
+    input = words;
+    getValidInput();
+  }
+
+  public void getValidInput() {
+    int i = 0;
+    while (app.choice == null ) {
+      output += app.input(input[i]);
+      i++;
+    }
+    play();
+  }
+
+  public String getInput() {
+    return input[0];
+  }
+
+  private void play() {
+    output += app.turn(app.hand, app.generateChoice());
+  }
 }

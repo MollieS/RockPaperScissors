@@ -4,6 +4,8 @@ import java.util.Random;
 public class App {
   private HashMap<String, String> options = new HashMap();
   private Game game;
+  public String choice;
+  public String hand;
 
   public App(Game game) {
     this.game = game;
@@ -26,7 +28,9 @@ public class App {
 
   public String input(String word) {
     if (validInput(word)) {
-      return "You chose " + options.get(word);
+      this.choice = word;
+      hand = options.get(word);
+      return "You chose " + hand;
     } else {
       return "Please choose 1, 2 or 3";
     }

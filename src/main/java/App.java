@@ -3,7 +3,7 @@ import java.util.HashMap;
 public class App {
   private HashMap<String, String> options = new HashMap();
 
-  public App() {
+  public App(game) {
     options.put("1", "Rock");
     options.put("2", "Paper");
     options.put("3", "Scissors");

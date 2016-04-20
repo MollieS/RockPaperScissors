@@ -1,3 +1,6 @@
 public interface Console {
-  public void start();
+
+  void print(String word);
+  String read();
+
 }

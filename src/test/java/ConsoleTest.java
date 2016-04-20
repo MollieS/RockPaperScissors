@@ -10,34 +10,18 @@ public class ConsoleTest {
 
   @Before
   public void setUp() {
-    this.game = new Game();
-    this.app = new App(game);
-    this.testConsole = new TestConsole(app);
+    this.testConsole = new TestConsole();
   }
 
   @Test
-  public void greetsUser() {
-    testConsole.start();
-    assertTrue((testConsole.output()).contains("Welcome"));
+  public void outputs() {
+    testConsole.print("Hello");
+    assertEquals("Hello", testConsole.getOutput());
   }
 
   @Test
-  public void getsInput() {
-    testConsole.start();
-    testConsole.input("1");
-    assertTrue((testConsole.getInput()).contains("1"));
-  }
-
-  @Test
-  public void loopsUntilValidInput() {
-    testConsole.start();
-    testConsole.input("Blah", "7", "1");
-    assertTrue(testConsole.output().contains("You chose Rock"));
-  }
-
-  @Test
-  public void returnsWinner() {
-    testConsole.input("1");
-    assertTrue(testConsole.output().contains("Player"));
+  public void readsInput() {
+    testConsole.giveInput("Goodbye");
+    assertEquals("Goodbye", testConsole.read());
   }
 }

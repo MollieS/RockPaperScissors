@@ -14,7 +14,8 @@ public class AppTest {
   @Before
   public void setUp() {
     Game game = new Game();
-    app = new App(game);
+    Console testConsole = new TestConsole();
+    app = new App(game, testConsole);
   }
 
   @Test

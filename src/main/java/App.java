@@ -6,9 +6,15 @@ public class App {
   private Game game;
   public String choice;
   public String hand;
+  private Console console;
 
-  public App(Game game) {
+  public App(Game game, Console console) {
     this.game = game;
+    this.console = console;
+    setOptions();
+  }
+
+  private void setOptions() {
     options.put("1", "Rock");
     options.put("2", "Paper");
     options.put("3", "Scissors");

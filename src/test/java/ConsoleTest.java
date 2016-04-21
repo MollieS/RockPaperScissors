@@ -24,4 +24,11 @@ public class ConsoleTest {
     testConsole.giveInput("Goodbye");
     assertEquals("Goodbye", testConsole.read());
   }
+
+  @Test
+  public void readsTwoInputs() {
+    testConsole.giveInput("Hello", "Goodbye");
+    testConsole.read();
+    assertEquals("Goodbye", testConsole.read());
+  }
 }

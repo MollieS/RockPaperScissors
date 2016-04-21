@@ -10,23 +10,27 @@ import org.junit.Before;
 public class AppTest {
 
   private App app;
+  private Game game;
+  private TestConsole testConsole;
 
   @Before
   public void setUp() {
-    Game game = new Game();
-    Console testConsole = new TestConsole();
-    app = new App(game, testConsole);
+    this.game = new Game();
+    this.testConsole = new TestConsole();
+    this.app = new App(game, testConsole);
   }
 
   @Test
   public void greetsUser() {
-    String greeting = app.greet();
-    assertThat(greeting, containsString("Welcome to RockPaperScissors!"));
+    app.greet();
+    String output = testConsole.getOutput();
+    assertThat(output, containsString("Welcome to RockPaperScissors!"));
   }
 
   @Test
   public void asksForInput() {
-    String prompt = app.promptForInput();
+    app.promptForInput();
+    String prompt = testConsole.getOutput();
     assertThat(prompt, containsString("Please choose:\n1: Rock\n2: Paper\n3: Scissors"));
   }
 
@@ -41,15 +45,27 @@ public class AppTest {
 
   @Test
   public void promptsForValidInput() {
-    String error = app.input("Rock");
+    app.input("Rock");
+    String error = testConsole.getOutput();
     assertThat(error, containsString("Please choose 1, 2 or 3"));
   }
 
   @Test
-  public void getsCorrectChoice() {
-    assertThat(app.input("1"), containsString("You chose Rock"));
-    assertThat(app.input("2"), containsString("You chose Paper"));
-    assertThat(app.input("3"), containsString("You chose Scissor"));
+  public void getsCorrectChoiceForOne() {
+    app.input("1");
+    assertThat(testConsole.getOutput(), containsString("You chose Rock"));
+  }
+
+  @Test
+  public void getsCorrectChoiceForTwo() {
+    app.input("2");
+    assertThat(testConsole.getOutput(), containsString("You chose Paper"));
+  }
+
+  @Test
+  public void getsCorrectChoiceForThree() {
+    app.input("3");
+    assertThat(testConsole.getOutput(), containsString("You chose Scissor"));
   }
 
   @Test
@@ -59,11 +75,13 @@ public class AppTest {
 
   @Test
   public void returnsWinningSymbol() {
-    assertThat(app.turn("Rock", "Paper"), containsString("Paper wins!"));
+    app.turn("Rock", "Paper");
+    assertThat(testConsole.getOutput(), containsString("Paper wins!"));
   }
 
   @Test
   public void returnsWinningPlayer() {
-    assertThat(app.turn("Rock", "Scissors"), containsString("Player One is the winner!"));
+    app.turn("Rock", "Scissors");
+    assertThat(testConsole.getOutput(), containsString("Player One is the winner!"));
   }
 }

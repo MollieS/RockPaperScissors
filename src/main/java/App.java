@@ -20,25 +20,25 @@ public class App {
     options.put("3", "Scissors");
   }
 
-  public String greet() {
-    return "Welcome to RockPaperScissors!";
+  public void greet() {
+    console.print("Welcome to RockPaperScissors!");
   }
 
-  public String promptForInput() {
-    return "Please choose:\n1: Rock\n2: Paper\n3: Scissors";
+  public void promptForInput() {
+    console.print("Please choose:\n1: Rock\n2: Paper\n3: Scissors");
   }
 
   public boolean validInput(String input) {
     return options.containsKey(input);
   }
 
-  public String input(String word) {
+  public void input(String word) {
     if (validInput(word)) {
       this.choice = word;
       hand = options.get(word);
-      return "You chose " + hand;
+      console.print("You chose " + hand);
     } else {
-      return "Please choose 1, 2 or 3";
+      console.print("Please choose 1, 2 or 3");
     }
   }
 
@@ -49,8 +49,8 @@ public class App {
     return choices[index];
   }
 
-  public String turn (String choice1, String choice2) {
+  public void turn (String choice1, String choice2) {
     String winningHand = game.play(choice1, choice2);
-    return winningHand + " wins!\n" + game.winner + " is the winner!";
+    console.print(winningHand + " wins!\n" + game.winner + " is the winner!");
   }
 }

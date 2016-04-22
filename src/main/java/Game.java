@@ -6,20 +6,11 @@ import java.util.List;
 class Game {
 
     private String playerOne;
+
     String winner;
 
-    String play(String choice1, String choice2) {
-        this.playerOne = choice1;
-        List<String> choices = Arrays.asList(choice1, choice2);
-        determineWinner(winningElement(choices));
-        return winningElement(choices);
-    }
-
-    private String winningElement(List<String> choices) {
-        if (choices.contains("Rock") && choices.contains("Paper")) return "Paper";
-        if (choices.contains("Scissors") && choices.contains("Paper")) return "Scissors";
-        if (choices.contains("Rock") && choices.contains("Scissors")) return "Rock";
-        return null;
+    String play(Elements choice1, Elements choice2) {
+        return choice1.winner(choice2);
     }
 
     private void determineWinner(String winningElement) {

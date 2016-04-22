@@ -1,15 +1,13 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class Game {
+class Game {
 
   private String playerOne;
-  private String playerTwo;
-  public String winner;
+  String winner;
 
-  public String play(String choice1, String choice2) {
+  String play(String choice1, String choice2) {
     this.playerOne = choice1;
-    this.playerTwo = choice2;
     List<String> choices = Arrays.asList(choice1, choice2);
     determineWinner(winningElement(choices));
     return winningElement(choices);

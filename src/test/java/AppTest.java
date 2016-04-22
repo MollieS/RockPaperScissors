@@ -1,7 +1,6 @@
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
@@ -103,22 +102,23 @@ public class AppTest {
 
   @Test
   public void playesAGame() {
-    testConsole.giveInput("3");
+    testConsole.giveInput("3", "quit");
     app.start();
     assertThat(testConsole.getOutput(), containsString("winner"));
   }
 
   @Test
   public void aDraw() {
-    testConsole.giveInput("3", "3", "3");
+    testConsole.giveInput("3", "3", "quit");
     app.turn("Rock", "Rock");
     assertThat(testConsole.getOutput(), containsString("It's a draw!"));
   }
 
   @Test
   public void loopsIfDraw() {
-    testConsole.giveInput("3", "3", "3");
+    testConsole.giveInput("3", "3", "quit");
     app.turn("Paper", "Paper");
     assertThat(testConsole.getOutput(), containsString("Play again"));
   }
+
 }

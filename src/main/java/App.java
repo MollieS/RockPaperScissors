@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Random;
 
 class App {
     private HashMap<String, String> options = new HashMap();

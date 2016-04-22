@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 public class ConsoleTest {
 
-  private Game game;
-  private App app;
   private TestConsole testConsole;
 
   @Before

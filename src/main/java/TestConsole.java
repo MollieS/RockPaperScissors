@@ -19,6 +19,8 @@ public class TestConsole implements Console {
     }
 
     public void giveInput(String... words) {
-        input.addAll(Arrays.asList(words));
+        for (int i = 0; i < words.length; i++) {
+            input.add(words[i]);
+        }
     }
 }

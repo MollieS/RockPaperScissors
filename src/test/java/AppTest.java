@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
@@ -10,17 +10,19 @@ public class AppTest {
 
   private App app;
   private TestConsole testConsole;
+  private MockedThrow player2;
 
   @Before
   public void setUp() {
     Game game = new Game();
     this.testConsole = new TestConsole();
-    this.app = new App(game, testConsole);
+    this.player2 = new MockedThrow();
+    this.app = new App(game, testConsole, player2);
   }
 
   @Test
   public void greetsUser() {
-    testConsole.giveInput("1");
+    testConsole.giveInput("2");
     app.start();
     String output = testConsole.getOutput();
     assertThat(output, containsString("Welcome to RockPaperScissors!"));
@@ -28,7 +30,7 @@ public class AppTest {
 
   @Test
   public void asksForInput() {
-    testConsole.giveInput("1");
+    testConsole.giveInput("2");
     app.start();
     String prompt = testConsole.getOutput();
     assertThat(prompt, containsString("Please choose:\n1: Rock\n2: Paper\n3: Scissors"));
@@ -36,14 +38,14 @@ public class AppTest {
 
   @Test
   public void onlyTakesNumbersToThree() {
-    testConsole.giveInput("4", "1");
+    testConsole.giveInput("4", "2");
     app.start();
     assertThat(testConsole.getOutput(), containsString("Please choose 1, 2 or 3"));
   }
 
   @Test
   public void promptsForValidInput() {
-    testConsole.giveInput("Rock", "1");
+    testConsole.giveInput("Rock", "2");
     app.start();
     String error = testConsole.getOutput();
     assertThat(error, containsString("Please choose 1, 2 or 3"));
@@ -51,14 +53,14 @@ public class AppTest {
 
   @Test
   public void loopsUntilValidInput() {
-    testConsole.giveInput("Rock", "1");
+    testConsole.giveInput("Rock", "2");
     app.start();
-    assertThat(testConsole.getOutput(), containsString("You chose Rock"));
+    assertThat(testConsole.getOutput(), containsString("You chose Paper"));
   }
 
   @Test
   public void getsCorrectChoiceForOne() {
-    testConsole.giveInput("1");
+    testConsole.giveInput("1", "3");
     app.start();
     assertThat(testConsole.getOutput(), containsString("You chose Rock"));
   }
@@ -79,7 +81,7 @@ public class AppTest {
 
   @Test
   public void generatesOtherPlayerChoice() {
-    assertNotEquals(null, app.generateChoice());
+    assertEquals("Rock", app.generateChoice());
   }
 
   @Test

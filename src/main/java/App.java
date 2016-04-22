@@ -6,10 +6,12 @@ class App {
     private Game game;
     private String hand;
     private Console console;
+    private RandomPlayer player2;
 
-    App(Game game, Console console) {
+    App(Game game, Console console, RandomPlayer player2) {
         this.game = game;
         this.console = console;
+        this.player2 = player2;
         setOptions();
     }
 
@@ -48,10 +50,7 @@ class App {
     }
 
     String generateChoice() {
-        String[] choices = {"Rock", "Paper", "Scissors"};
-        Random random = new Random();
-        int index = random.nextInt(choices.length);
-        return choices[index];
+       return player2.makeThrow();
     }
 
     void turn(String choice1, String choice2) {

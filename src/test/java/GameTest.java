@@ -25,11 +25,6 @@ public class GameTest {
   }
 
   @Test
-  public void returnsNothingForDraw() {
-    assertEquals(null, game.play("Rock", "Rock"));
-  }
-
-  @Test
   public void determinesWinner() {
     game.play("Rock", "Paper");
     assertThat(game.winner, containsString("Player Two"));

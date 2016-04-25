@@ -5,12 +5,16 @@ class Game {
     String winner;
 
     String play(String choice1, String choice2) {
-        playerOne = choice1;
-        Elements element1 = findElement(choice1);
-        Elements element2 = findElement(choice2);
-        String winningElement = element1.winner(element2);
-        determineWinner(winningElement);
-        return winningElement;
+        if (choice1 == choice2) {
+            return null;
+        } else {
+            playerOne = choice1;
+            Elements element1 = findElement(choice1);
+            Elements element2 = findElement(choice2);
+            String winningElement = element1.winner(element2);
+            determineWinner(winningElement);
+            return winningElement;
+        }
     }
 
     private void determineWinner(String winningElement) {

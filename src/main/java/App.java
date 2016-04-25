@@ -5,9 +5,9 @@ class App {
     private Game game;
     private String hand;
     private Console console;
-    private RandomPlayer player2;
+    private Player player2;
 
-    App(Game game, Console console, RandomPlayer player2) {
+    App(Game game, Console console, Player player2) {
         this.game = game;
         this.console = console;
         this.player2 = player2;
@@ -49,7 +49,7 @@ class App {
     }
 
     String generateChoice() {
-       return player2.makeThrow();
+       return player2.getChoice();
     }
 
     void turn(String choice1, String choice2) {

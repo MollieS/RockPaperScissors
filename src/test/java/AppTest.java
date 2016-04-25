@@ -15,7 +15,7 @@ public class AppTest {
     public void setUp() {
         Game game = new Game();
         this.testConsole = new TestConsole();
-        MockedThrow player2 = new MockedThrow();
+        ComputerPlayer player2 = new ComputerPlayer(new TestRandomizer());
         this.app = new App(game, testConsole, player2);
     }
 

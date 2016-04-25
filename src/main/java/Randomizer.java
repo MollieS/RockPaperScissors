@@ -1,4 +1,4 @@
-interface RandomPlayer {
+interface Randomizer {
 
    String makeThrow();
 }

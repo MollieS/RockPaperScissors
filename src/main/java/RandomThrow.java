@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandomThrow implements RandomPlayer{
+public class RandomThrow implements Randomizer{
 
     public String makeThrow() {
         String[] choices = {"Rock", "Paper", "Scissors"};

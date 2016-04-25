@@ -1,4 +1,4 @@
-public class MockedThrow implements RandomPlayer {
+public class TestRandomizer implements Randomizer {
 
     public String makeThrow() {
         return "Rock";

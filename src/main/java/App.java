@@ -3,13 +3,14 @@ import java.util.HashMap;
 class App {
     private HashMap<String, String> options = new HashMap();
     private Game game;
-    private String hand;
+    private HumanPlayer player1;
     private Console console;
     private Player player2;
 
-    App(Game game, Console console, Player player2) {
+    App(Game game, Console console, HumanPlayer player1, Player player2) {
         this.game = game;
         this.console = console;
+        this.player1 = player1;
         this.player2 = player2;
         setOptions();
     }
@@ -18,7 +19,7 @@ class App {
         greet();
         promptForInput();
         loopForInput();
-        turn(hand, generateChoice());
+        turn(player1.getChoice(), player2.getChoice());
     }
 
     private void setOptions() {
@@ -41,22 +42,18 @@ class App {
 
     private void input(String word) {
         if (validInput(word)) {
-            hand = options.get(word);
-            console.print("You chose " + hand);
+            player1.setChoice(options.get(word));
+            console.print("You chose " + player1.getChoice());
         } else {
             console.print("Please choose 1, 2 or 3");
         }
-    }
-
-    String generateChoice() {
-       return player2.getChoice();
     }
 
     void turn(String choice1, String choice2) {
         console.print("Player Two chose " + choice2);
         if (choice1 == choice2) {
             console.print("It's a draw!");
-            hand = null;
+            player1.setChoice(null);
             loopForDraw();
         } else {
             console.print(game.play(choice1, choice2) + " wins!");
@@ -65,7 +62,7 @@ class App {
     }
 
     private void loopForInput() {
-        while (hand == null) {
+        while (player1.getChoice() == null) {
             input(console.read());
         }
     }

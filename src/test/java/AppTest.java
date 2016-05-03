@@ -1,7 +1,6 @@
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
@@ -16,7 +15,8 @@ public class AppTest {
         Game game = new Game();
         this.testConsole = new TestConsole();
         ComputerPlayer player2 = new ComputerPlayer(new TestRandomizer());
-        this.app = new App(game, testConsole, player2);
+        HumanPlayer player1 = new HumanPlayer();
+        this.app = new App(game, testConsole, player1, player2);
     }
 
     private void startGame(String... choices) {
@@ -70,11 +70,6 @@ public class AppTest {
     public void getsCorrectChoiceForThree() {
         startGame("3");
         assertThat(testConsole.getOutput(), containsString("You chose Scissor"));
-    }
-
-    @Test
-    public void generatesOtherPlayerChoice() {
-        assertEquals("Rock", app.generateChoice());
     }
 
     @Test

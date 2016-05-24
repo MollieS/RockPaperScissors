@@ -1,0 +1,4 @@
+interface RandomPlayer {
+
+   String makeThrow();
+}

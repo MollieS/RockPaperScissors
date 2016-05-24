@@ -3,6 +3,7 @@ plugins {
     id "jacoco"
 }
 
+apply plugin: 'application'
 apply plugin: 'java'
 
 // In this section you declare where to find the dependencies of your project
@@ -26,3 +27,5 @@ jacocoTestReport {
       html.enabled = true
   }
 }
+
+mainClassName = 'src.main.java.Main'
